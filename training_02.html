@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Training #02</title>
+    <link href="./style/style.css" rel="stylesheet" />
+    <script type="text/javascript" src="./js/tools.js"></script>
+</head>
+
+<body>
+    <!-- rules and instructions -->
+    <div class="card instructions">
+        <p class="h6 font-weight-bold text-center">Consignes générales et éléments de départ</p>
+        <ul>
+            <li>Les consignes de l'exercice <em>Training #01</em> restent <strong>valables</strong>.</li>
+            <li>Les éléments de départ sont les mêmes que pour <em>Training #01</em> et restent utilisables dans les
+                mêmes conditions.</li>
+        </ul>
+
+        <h5 class="text-success text-center">Que la force soit avec vous !</h5>
+    </div>
+
+    <!-- subject -->
+    <div class="card subject">
+        <p class="h6 font-weight-bold text-center">Training #02 - Une fonction pas à pas</p>
+        <p>Remplir la zone <em>&lt;script&gt;...&lt;/script&gt;</em> ci-dessous pour réaliser les points suivants :</p>
+        <ol>
+            <li><u>Préliminaire</u> : Que faut-il faire (ou écrire) pour que tous les points suivants soient exécutés
+                seulement
+                lors de l'appui sur le bouton "Go !" ?</li>
+            <li>Récupérer la valeur saisie.</li>
+            <li>Tester la valeur saisie ; celle-ci doit être un nombre valide entre 5 et 15.</li>
+            <li>Calculer le cube de la valeur saisie.<br>
+                Pour rappel, si on nomme <em>x</em> la valeur saisie, son cube vaut <em>x<sup>3</sup> = x * x * x</em>.
+            </li>
+            <li>Afficher le résultat en utilisant la fonction <code>displayMessage</code><br>
+                Pour une utilisation correcte, bien lire le commentaire et la <strong>signature</strong> de
+                cette fonction (dans <em>js/tools.js</em>) ; il n'est pas -encore- nécessaire
+                d'en comprendre le fonctionnement interne.</li>
+        </ol>
+        <p>Les différentes étapes sont rappelées dans le code.</p>
+    </div>
+
+    <!-- html input wrapper -->
+    <div class="card input">
+        <div class="formulaire">
+            <input type="text" id="number" size=20 placeholder="Un nombre entre 5 et 15">
+            <button type="button" id="go" class="btn btn-primary" onclick="go()">
+                Go !
+            </button>
+        </div>
+    </div>
+
+    <!-- html display area wrapper -->
+    <div class="card result" id="result">
+    </div>
+
+    <!-- javascript part -->
+    <script type="text/javascript">
+        // YOUR CODE HERE...
+
+        // Préliminaire : Il faut ajouter la fonction addEventListener() et passer en paramètres l'élément déclencheur.
+
+        // Step 0: que faut-il écrire pour répondre à l'événement "onclick" ?
+
+
+        // Step 1: récupérer la valeur saisie
+
+        // Step 2: tester la valeur saisie ; doit être un nombre valide entre 5 et 15
+
+        // Step 3: calculer le cube de la valeur saisie
+        // Pour rappel si on appele x la valeur saisie, son cube vaut x * x * x
+
+        // Step 4: Afficher le résultat en utilisant la fonction displayResult 
+
+
+        // Déclaration de la fonction go
+        function go(){
+
+              // Récupération de la valeur de l'élément HTML avec l'ID "number"
+            var userNumber = document.getElementById("number").value;
+
+            // Initialisation de la variable message avec une chaîne vide
+            var message = "";
+
+            // Vérification si userNumber est compris entre 5 et 15 inclus
+            if (userNumber >= 5 && userNumber <= 15) {
+
+                // Conversion de userNumber en entier et calcul de sa puissance cubique
+                let result = parseInt(userNumber) ** 3;
+
+                // Construction du message avec le résultat
+                message = `le resultat est de ${result}`;
+
+                // Appel de la fonction displayMessage pour afficher le message
+                displayMessage(message);
+            } else {
+
+                // Construction du message d'erreur
+                message = "Votre chiffre ne correspond pas à la valeur demandée"
+
+                // Appel de la fonction displayMessage pour afficher le message d'erreur
+                displayMessage(message)
+            }
+        }
+
+    </script>
+</body>
+
+</html>

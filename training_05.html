@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Training #05</title>
+    <link href="./style/style.css" rel="stylesheet" />
+    <script type="text/javascript" src="./js/tools.js"></script>
+</head>
+
+<body>
+    <!-- rules and instructions -->
+    <div class="card instructions">
+        <p class="h6 font-weight-bold text-center">Consignes générales et éléments de départ</p>
+        <ul>
+            <li>Les consignes de l'exercice <em>Training #01</em> restent <strong>valables</strong>.</li>
+            <li>Les éléments de départ sont les mêmes que pour <em>Training #01</em> et restent utilisables dans les
+                mêmes conditions.</li>
+        </ul>
+
+        <h5 class="text-success text-center">Que la force soit avec vous !</h5>
+    </div>
+
+    <!-- subject -->
+    <div class="card subject">
+        <p class="h6 font-weight-bold text-center">Training #05 - On monte dans les tours !</p>
+        <p>Repartir du code établi lors de l'exercice précédent (Training #04) et faire évoluer le code de la
+            fonction principale pour que le calcul réalisé par la fonction <code>cube</code> soit maintenant exécuté
+            pour
+            plusieurs valeurs <strong>allant de 1 en 1, depuis 1 jusqu'à la valeur saisie</strong> dans le champ du
+            formulaire (cette valeur saisie doit être incluse dans le calcul).
+        </p>
+        <p>
+            Les résultats seront multiples ! Il faut donc les <strong>ranger dans un tableau</strong>.
+        </p>
+        <p>
+            Puisque le résultat attendu est maintenant un tableau, utiliser la fonction <code>displayArray</code>
+            (donnée dans <em>js/tools.js</em>) pour afficher le résultat des calculs.
+            Pour une utilisation correcte, bien lire le commentaire et la signature de cette fonction !
+        </p>
+    </div>
+
+    <!-- html input wrapper -->
+    <div class="card input">
+        <div class="formulaire">
+            <input type="text" id="number" size=20 placeholder="Un nombre entre 5 et 15">
+            <button type="button" class="btn btn-primary" onclick="go()">
+                Go !
+            </button>
+        </div>
+    </div>
+
+    <!-- html display area wrapper -->
+    <div class="card result" id="result">
+    </div>
+
+    <!-- javascript part -->
+    <script type="text/javascript">
+        // YOUR CODE HERE...
+
+        function cube(n) {
+            let tab = [];
+
+            // Conversion de userNumber en entier et calcul de sa puissance au carré
+            for (i = 0; i <= n; i++) {
+                if (i % 2 === 0) {
+                    tab.push(parseInt(i) ** 3);
+                } else {
+                    tab.push(parseInt(i) ** 2);
+                }
+            }
+            return tab
+        }
+
+
+
+        // Déclaration de la fonction go
+        function go() {
+
+            // Récupération de la valeur de l'élément HTML avec l'ID "number"
+            var userNumber = document.getElementById("number").value;
+
+            // Initialisation de la variable message avec une chaîne vide
+            var message = "";
+
+            // Vérification si userNumber est compris entre 5 et 15 inclus
+            if (userNumber >= 5 && userNumber <= 15) {
+
+
+                let result = cube(userNumber)
+
+                // Construction du message avec le résultat
+                message = `le resultat est de ${result}`;
+
+                // Appel de la fonction displayMessage pour afficher le message
+                displayArray(result)
+            } else {
+
+                // Construction du message d'erreur
+                message = "Votre chiffre ne correspond pas à la valeur demandée"
+
+                // Appel de la fonction displayMessage pour afficher le message d'erreur
+                displayMessage(message)
+            }
+        }
+
+        
+    </script>
+</body>
+
+</html>
