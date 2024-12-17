@@ -29,35 +29,36 @@
         <p class="h6 font-weight-bold text-center">Training #06 - Synthèse</p>
         <p>En s'inspirant de la réflexion et du code mis en oeuvre lors des 4 exercices précédents (Training #02 à #05)
             réaliser les points suivants :
-            <ol>
-                <li>Récupérer la fonction <code>cube</code> depuis l'exercice Training #05. Elle sera utilisée telle
-                    que ; inutile de la modifier.</li>
-                <li>Écrire une fonction <code>generateSrcData</code> qui construit un tableau de valeurs aléatoires.<br>
-                    Cette fonction est appelée par appui sur le bouton "Generate".<br>
-                    Pour construire le tableau, <code>generateSrcData</code> utilise la fonction
-                    <code>randomArrayOfIntFromInterval</code> mise à
-                    disposition dans <em>js/tools.js</em>.<br>
-                    Les paramètres de construction du tableau sont acquis à travers le formulaire d'entrée:
-                    <ul>
-                        <li>nombre d'éléments de la série</li>
-                        <li>valeur minimum de la série générée</li>
-                        <li>valeur maximum de la série générée</li>
-                    </ul>
-                    Le tableau généré par <code>generateSrcData</code> est stocké dans une variable
-                    qui devra être partagée avec les autres fonctions du code.</li>
-                <li>Écrire la fonction <code>go</code> qui s'exécute lors de l'appui sur le bouton "Go !".<br>
-                    Cette fonction exploite le tableau des valeurs "sources"
-                    qui auront été générées auparavant (par l'appui sur le bouton "Generate").<br>
-                    Cette fonction a pour tâche de construire un nouveau tableau qui contient la transformation du
-                    tableau "source"
-                    par la fonction <code>cube</code>. C'est à dire que le tableau "résultat" ainsi construit contient
-                    les données
-                    du tableau "source", une à une transformées par la fonction <code>cube</code>.<br>
-                    <br>
-                    Le tableau "résultat" sera restitué à l'utilisateur en utilisant la fonction fournie
-                    <code>displayArray</code>.
-                </li>
-            </ol>
+        <ol>
+            <li>Récupérer la fonction <code>cube</code> depuis l'exercice Training #05. Elle sera utilisée telle
+                que ; inutile de la modifier.</li>
+            <li>Écrire une fonction <code>generateSrcData</code> qui construit un tableau de valeurs aléatoires.<br>
+                Cette fonction est appelée par appui sur le bouton "Generate".<br>
+                Pour construire le tableau, <code>generateSrcData</code> utilise la fonction
+                <code>randomArrayOfIntFromInterval</code> mise à
+                disposition dans <em>js/tools.js</em>.<br>
+                Les paramètres de construction du tableau sont acquis à travers le formulaire d'entrée:
+                <ul>
+                    <li>nombre d'éléments de la série</li>
+                    <li>valeur minimum de la série générée</li>
+                    <li>valeur maximum de la série générée</li>
+                </ul>
+                Le tableau généré par <code>generateSrcData</code> est stocké dans une variable
+                qui devra être partagée avec les autres fonctions du code.
+            </li>
+            <li>Écrire la fonction <code>go</code> qui s'exécute lors de l'appui sur le bouton "Go !".<br>
+                Cette fonction exploite le tableau des valeurs "sources"
+                qui auront été générées auparavant (par l'appui sur le bouton "Generate").<br>
+                Cette fonction a pour tâche de construire un nouveau tableau qui contient la transformation du
+                tableau "source"
+                par la fonction <code>cube</code>. C'est à dire que le tableau "résultat" ainsi construit contient
+                les données
+                du tableau "source", une à une transformées par la fonction <code>cube</code>.<br>
+                <br>
+                Le tableau "résultat" sera restitué à l'utilisateur en utilisant la fonction fournie
+                <code>displayArray</code>.
+            </li>
+        </ol>
         </p>
 
     </div>
@@ -92,7 +93,7 @@
             for (let i = 0; i <= n.length - 1; i++) {
 
                 // Vérifie si l'élément est pair ou impair, et l'ajoute à tab
-                tab.push(n[i] % 2? parseInt(n[i]) ** 3 : parseInt(n[i]) ** 2);
+                tab.push(n[i] % 2 ? parseInt(n[i]) ** 3 : parseInt(n[i]) ** 2);
 
                 /*
                 // Vérifie si l'élément est pair
@@ -110,18 +111,24 @@
             return tab; // Retourne le tableau 'tab' contenant les résultats
         }
 
+        function cube2(n) {
+            var transform = 0;
+            // Vérifie si l'élément est pair ou impair et effectue un calcul en conséquence.
+            n % 2 ? transform = parseInt(n) ** 3 : transform = parseInt(n) ** 2;
+            return transform; // Retourne le tableau 'tab' contenant les résultats
+        }
 
-
+        var gernerateData = [];
 
 
         // Fonction qui génère des données sources en fonction des valeurs saisies par l'utilisateur
         function generateSrcData() {
 
             var min = document.getElementById("borne-inf")
-            .value; // Récupère la borne inférieure saisie par l'utilisateur
+                .value; // Récupère la borne inférieure saisie par l'utilisateur
 
             var max = document.getElementById("borne-sup")
-            .value; // Récupère la borne supérieure saisie par l'utilisateur
+                .value; // Récupère la borne supérieure saisie par l'utilisateur
 
             var n = document.getElementById('number').value; // Récupère le nombre d'éléments saisis par l'utilisateur
 
@@ -143,7 +150,7 @@
 
             // Vérifie si les valeurs saisies sont des entiers
             else if (!Number.isInteger(parseFloat(min)) || !Number.isInteger(parseFloat(max)) || !Number.isInteger(
-                    parseFloat(n))) {
+                parseFloat(n))) {
                 message = "Veuillez entrer un nombre entier !";
 
                 displayMessage(message); // Affiche le message d'erreur
@@ -151,21 +158,18 @@
             } else {
 
                 // Si toutes les vérifications sont passées, génère un tableau d'entiers aléatoires
-                return randomArrayOfIntFromInterval(n, min, max);
+                gernerateData = randomArrayOfIntFromInterval(n, min, max);
+                return gernerateData
             }
         }
-
-
 
 
         // Fonction principale qui est appelée lorsque l'utilisateur clique sur le bouton "Go"
         function go() {
 
-            var arraySource = generateSrcData(); // Génère les données sources
+            var datastransform = generateData.map(cube2(n));
 
-            var result = cube(arraySource); // Applique la fonction 'cube' aux données sources
-
-            displayArray(result); // Affiche le résultat
+            displayArray(datastransform); // Affiche le résultat
         }
     </script>
 </body>
